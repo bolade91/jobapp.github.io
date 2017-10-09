@@ -2,9 +2,10 @@
   "name": "job",
   "version": "1.0.0",
   "description": "An app that will help small business owners to get more customers by helping them advertise their products and services",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
