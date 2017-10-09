@@ -1,0 +1,17 @@
+{
+  "name": "job",
+  "version": "1.0.0",
+  "description": "An app that will help small business owners to get more customers by helping them advertise their products and services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "mysql": "^2.14.1"
+  }
+}
