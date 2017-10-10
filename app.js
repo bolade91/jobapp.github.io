@@ -3,12 +3,7 @@ var express = require("express"),
     mysql = require('mysql');
 app = express();
 var port = process.env.PORT || 2020;
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'teddybravoç&',
-    database: 'test1',
-});
+var connection = mysql.createConnection(process.env.JAWSDB_URL);
 connection.connect(function(err) {
     if (err) {
         console.log(err);
