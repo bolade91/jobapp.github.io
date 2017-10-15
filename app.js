@@ -3,7 +3,13 @@ var express = require("express"),
     mysql = require('mysql');
 app = express();
 var port = process.env.PORT || 2020;
-var connection = mysql.createConnection(process.env.JAWSDB_URL);
+/*var connection = mysql.createConnection(process.env.JAWSDB_URL);*/
+var connection=mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'teddybravoç&',
+    database: 'test1'
+})
 connection.connect(function(err) {
     if (err) {
         console.log(err);
@@ -100,7 +106,23 @@ app.get("/services", function(req, res) {
     //res.render("list");
 });
 
-app.get("/profile/:id", function(req, res) {
+app.get("/job/profile/:id", function(req, res) {
+    var id = req.params.id;
+    console.log("we here " + id);
+    var sql = "SELECT * from brands where brand_id = ?";
+    connection.query(sql, [id], function(err, data, fields){
+        if (err) throw err;
+        console.log(data);
+        res.render("jobprofile", {
+            data: data,
+            id: id
+        }); 
+    });
+    
+    //res.send("Show page!!");
+});
+
+app.get("/service/profile/:id", function(req, res) {
     var id = req.params.id;
     console.log("we here " + id);
     var sql = "SELECT * from apps_countries where id = ?";
@@ -114,6 +136,35 @@ app.get("/profile/:id", function(req, res) {
     });
     
     //res.send("Show page!!");
+});
+
+app.get("/register", function(req, res){
+  res.render("register");
+});
+
+app.get("/sub", function(req, res){
+    res.render("submit.ejs");
+});
+
+app.post("/insert", function(req, res){
+    console.log(req.body);
+    console.log(req.files);
+    var data={
+        nom: req.body.nom,
+        telephone: req.body.tel,
+        description: req.body.des,
+        cv: req.body.cv,
+        img: req.body.pic
+    };
+    console.log(data);
+    var query="insert into jobber set ? ";
+    connection.query(query, data, function (err, result) {
+        if (err) 
+            throw err;
+        console.log("1 record inserted");
+    });
+    console.log("name = "+req.body.nom);
+    res.redirect("/sub");
 });
 
 app.listen(port, function() {
