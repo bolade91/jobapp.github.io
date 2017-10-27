@@ -51,9 +51,7 @@ app.get("/", function(req, res) {
 app.get("/about", function(req, res) {});
 
 app.get("/home", function(req, res) {
-    res.render("index", {
-        data: data
-    });
+    res.redirect("/");
 });
 
 var totalRec = 0,
@@ -140,6 +138,10 @@ app.get("/service/profile/:id", function(req, res) {
 
 app.get("/register", function(req, res){
   res.render("register");
+});
+
+app.get("/servicereg", function(req, res){
+  res.render("servicereg");
 });
 
 app.get("/sub", function(req, res){
